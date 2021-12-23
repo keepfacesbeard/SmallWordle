@@ -25,11 +25,11 @@ function wordOfTheDay() {
     let i = 21*int2*int2;
     i -= 7;
     i -= int1;
-    if (i>2692){
+    if (i>2691){
         i-=21;
         i+=int2
     }
-    if (i>2692){
+    if (i>2691){
         i -=200;
     }
     console.log("i before abs: " + i)
@@ -46,7 +46,7 @@ function wordOfTheDay() {
 }
 
 function randomNewWord(){
-    let i = randomInteger(0, 16397);
+    let i = randomInteger(0, 2691);
     theAnswer = allTheWords[i];
     resetGame();
     randomword.style.backgroundColor = "#b3d9ff";
@@ -216,7 +216,7 @@ function popupModal(text){
         }
     }
     
-    if (activeRow == 6 && correctLetters < 4){
+    if (activeRow >= 6 && correctLetters < 4){
         alert(`You lost. The answer was ${theAnswer.toUpperCase()}. Sorry. Better luck tomorrow.`);
     }
  }

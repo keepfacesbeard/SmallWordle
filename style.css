@@ -150,9 +150,10 @@ body {
     cursor: pointer;
   }
   #enter {
-      min-width: 62px;
+      min-width: 50px;
+      max-width: 60px;
   }
   #delete {
       min-width: 50px;
-      max-width: 62px;
+      max-width: 55px;
   }
