@@ -24,23 +24,23 @@ function wordOfTheDay() {
     let month = d.getMonth();
     let int1 = parseInt(day) * parseInt(month);
     let int2 = Math.abs(parseInt(day) - parseInt(month))
-    let i = 21*int1+int2;
-    i -= 7;
+    let i = 16*int1+int2;
+    i -= 15;
     i -= int1;
     if (i>allTheAnswers.length-1){
         i=parseInt(i/2);
     }
     if (i>allTheAnswers.length-1){
-        i -=200;
+        i -=300;
     }
     if (i>allTheAnswers.length-1){
-        i -=179;
+        i -=279;
     }
     if (i>allTheAnswers.length-1){
-        i -=80;
+        i -=280;
     }
     if (i>allTheAnswers.length-1){
-        i -=62;
+        i -=99;
     }
     i = Math.abs(i);
     console.log("word of the day index: " + i)
@@ -167,6 +167,15 @@ function popupModal(text){
     popup.id = 'popuptext';
     modalcontent.appendChild(popup);
     popup.innerText = `\n${text}`;
+    newGameBtn = document.createElement('button');
+    newGameBtn.innerText = "New game with a random word";
+    modalcontent.appendChild(newGameBtn);
+    newGameBtn.addEventListener('click', function() {
+        randomNewWord();
+        modal.remove();
+        event.stopPropagation();
+    });
+
     xbutton.onclick = function() {
         modal.remove();
         event.stopPropagation();
@@ -209,7 +218,6 @@ function popupModal(text){
                     window.removeEventListener('keydown', typeLetter);
                     window.removeEventListener('click', clickLetter);
                     randomword.addEventListener('click', randomNewWord);
-                    
                     break;  
                 }
             }
@@ -227,7 +235,10 @@ function popupModal(text){
     }
     
     if (activeRow >= 6 && correctLetters < 4){
-        alert(`You lost. The answer was ${theAnswer.toUpperCase()}. Sorry. Better luck tomorrow.`);
+        popupModal(`You lost. The answer was ${theAnswer.toUpperCase()}. Sorry. Better luck tomorrow.`);
+        window.removeEventListener('keydown', typeLetter);
+        window.removeEventListener('click', clickLetter);
+        randomword.addEventListener('click', randomNewWord);
     }
  }
 
