@@ -9,7 +9,8 @@ const allTheAnswers = [
 
 
 //answer generation
-let theAnswer = ""
+let gameOn = true;
+let theAnswer = "";
 const randomword = document.getElementById('randomword');
 const dailyword = document.getElementById('wordoftheday');
 const gameMode = document.getElementById('gametype');
@@ -169,7 +170,7 @@ function popupModal(text){
     popup.id = 'popuptext';
     modalcontent.appendChild(popup);
     popup.innerText = `\n${text}`;
-    if (activeRow >=6){
+    if (gameOn == false){
         newGameBtn = document.createElement('button');
         newGameBtn.innerText = "New game with a random word";
         modalcontent.appendChild(newGameBtn);
@@ -217,6 +218,7 @@ function popupModal(text){
             document.getElementById(guess[i].toUpperCase()).classList.add('inword');
             ++correctLetters;
             if (correctLetters == 4){
+                    gameOn = false
                     popupModal(`You won with ${activeRow} guesses.`);
                     window.removeEventListener('keydown', typeLetter);
                     window.removeEventListener('click', clickLetter);
@@ -238,6 +240,7 @@ function popupModal(text){
     }
     
     if (activeRow >= 6 && correctLetters < 4){
+        gameOn = false;
         popupModal(`You lost. The answer was ${theAnswer.toUpperCase()}. Sorry. Better luck tomorrow.`);
         window.removeEventListener('keydown', typeLetter);
         window.removeEventListener('click', clickLetter);
@@ -252,6 +255,7 @@ function isLetter(c) {
   }
 
 function resetGame(){
+    gameOn = true;
     for (let i =0; i<24; i++){
         let tile = document.getElementById(`tile${i}`);
         tile.innerText = ' ';
